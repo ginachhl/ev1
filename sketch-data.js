@@ -1,30 +1,14 @@
-var temblores;
+var datos;
 
-function preload(){
-	temblores = loadJSON ('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson')}
+function preload() {
+	datos = loadTable('https://raw.githubusercontent.com/ginachhl/ev1/gh-pages/datos.csv', 'csv', 'header') }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  noStroke();
-  print(temblores);
-      for (var x = 0; x < temblores.features.length; x++)
-      if(temblores.features[x].properties.place.includes("Chile"))
-        createP(temblores.features[x].properties.mag);
+	createCanvas(windowWidth, windowHeight);
+	console.log(datos);
+	console.log(datos.get(1,0));
 }
 
 function draw() {
-  colorMode(HSB, 360, 100, 100); 
-  for (var x = 0; x < temblores.features.length; x++) {
-    var a = random(120, 240);
-    var b = random(0, 100);
-    var c = random(50,100);
-    fill(a, b, c);
-    pelota(a);
-  }
+	background(200);
 }
-        
-function pelota(diametro) {
-  square(random(0, width), random(0, height), diametro);
-}
-
-  
